@@ -5,3 +5,5 @@ URL: https://www.udemy.com/build-an-app-with-aspnet-core-and-angular-from-scratc
 
 personal notes:
 Vs code git remote repository not working so use git push -u origin master to push files
+to start the api use dotnet watch run
+to start teh spa use ng serve

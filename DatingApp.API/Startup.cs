@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatingApp.API.Data;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,9 @@ namespace DatingApp.API
             //need to access cors policy to app to be able to grab data from this server side program
             //also added app.usecors down below
             services.AddCors();
+
+            //add authentication implentation
+            services.AddScoped<IAuthRepository,  AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

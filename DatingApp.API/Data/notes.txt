@@ -1,0 +1,3 @@
+THis folder is the storage of the (in my mind) database files of the api.
+currently stores the Datacontext which dictates the Models the api uses &
+the Authentication Interface and implementation
