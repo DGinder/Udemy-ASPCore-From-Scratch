@@ -9,26 +9,18 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 
   registerMode = false;
-  values: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getValues();
   }
 
   registerToggle() {
-    this.registerMode = !this.registerMode;
+    this.registerMode = true;
   }
-  
 
-  getValues() {
-    // get request go and return as a json but the return is a observable json
-    this.http.get('http://localhost:3000/api/values').subscribe(response => {
-      this.values = response;
-    }, error => {
-      console.log(error);
-    });
+  cancelRegisterMode(registerMode: boolean){
+    this.registerMode = registerMode;
   }
 
 }
