@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 // to add a property you need to make a @Output() variable that is a new event emmiter
 // then add the variabel as a method to a method as seen in cancel
@@ -14,21 +15,21 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
 
-  constructor( private authService: AuthService) { }
+  constructor( private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
 
   register() {
     this.authService.register(this.model).subscribe(() => {
-      console.log('registration successful');
+      this.alertify.success('Registration Successful');
     }, error => {
-      console.log(error);
-    })
+      this.alertify.error(error);
+    });
   }
 
   cancel() {
-    this.cancelRegister.emit(false)
+    this.cancelRegister.emit(false);
     console.log('canceled');
   }
 
