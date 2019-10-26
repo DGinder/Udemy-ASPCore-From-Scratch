@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DatingApp.API.Models;
@@ -13,12 +14,14 @@ namespace DatingApp.API.Data
                 var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
                 foreach(var user in users){
-                    byte[] passwordHash, passwordSalt;
-                    CreatePasswordHash("password", out passwordHash, out passwordSalt);
+                    byte[] passwordhash, passwordSalt;
+                    CreatePasswordHash("password", out passwordhash, out passwordSalt);
 
-                    user.PasswordHash = passwordHash;
-                    user.PasswordSalt = passwordHash;
+                    user.PasswordHash = passwordhash;
+                    user.PasswordSalt = passwordSalt;
                     user.Username = user.Username.ToLower();
+                    Console.WriteLine(user.Username);
+                    Console.WriteLine(user.PasswordHash);
                     context.Users.Add(user);
                 }
 

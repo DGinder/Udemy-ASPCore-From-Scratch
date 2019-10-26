@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using DatingApp.API.Models;
@@ -35,7 +36,11 @@ namespace DatingApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(opt => {
+                    opt.SerializerSettings.ReferenceLoopHandling = 
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
             //opens database conenction using the connection string within the appsettings.json
             //also allows the datacontext class to be passed into other files such as the controllers
             //for more info on the DataContext and what tables are used see file under Models Folder
@@ -45,6 +50,9 @@ namespace DatingApp.API
             //need to access cors policy to app to be able to grab data from this server side program
             //also added app.usecors down below
             services.AddCors();
+
+            //AutoMapper
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
 
             //add authentication implentation
             services.AddScoped<IAuthRepository,  AuthRepository>();
