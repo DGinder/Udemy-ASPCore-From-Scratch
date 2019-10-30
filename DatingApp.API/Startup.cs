@@ -51,6 +51,9 @@ namespace DatingApp.API
             //also added app.usecors down below
             services.AddCors();
 
+            //Cloudinary COnfiguration to Helper mapping
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+
             //AutoMapper
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
 
