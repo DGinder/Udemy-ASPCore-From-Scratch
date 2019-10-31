@@ -20,6 +20,9 @@
     <!--this will make it so that this only show up if logged in as denouted by the component.ts"-->
     <!--Safe navigation token is ? | titlecase turns a angular text load into a certain case-->
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <span>
+        <img src="{{photoUrl}}" class="mr-1"alt="">
+      </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </a>

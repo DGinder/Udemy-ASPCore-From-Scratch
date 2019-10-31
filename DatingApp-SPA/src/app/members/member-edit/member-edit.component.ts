@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: User;
+  photoUrl: string;
 
   // this implements a use case of trying to close the tab with unsaved changes
   @HostListener('window:beforeunload', ['$event'])
@@ -30,6 +31,8 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data.user;
     });
+    // get dynamic changes from the auth service observable behavior
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
