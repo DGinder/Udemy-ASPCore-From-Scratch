@@ -38,6 +38,8 @@ login(model: any) {
         // set up the behavioral
         if (this.currentUser.photoUrl) {
           this.changeMemebrPhoto(this.currentUser.photoUrl);
+        } else {
+          this.changeMemebrPhoto(null);
         }
       }
     })

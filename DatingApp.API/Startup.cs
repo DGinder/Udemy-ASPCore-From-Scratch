@@ -69,6 +69,9 @@ namespace DatingApp.API
                     ValidateAudience = false
                 };
             });
+            // service to update last active of a user on api call
+            // added to user controller as well
+            services.AddScoped<LogUserActivity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
