@@ -45,10 +45,9 @@ export class MemberListComponent implements OnInit {
   }
 
   loadUsers() {
-    console.log(this.userParams);
     // because this is a obervable we need to subscribe to it
     this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
-      .subscribe((res: PaginatedResult<User[]>) =>{
+      .subscribe((res: PaginatedResult<User[]>) => {
       this.users = res.result;
       this.pagination = res.pagination;
     }, error => {

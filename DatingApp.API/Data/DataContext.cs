@@ -16,5 +16,27 @@ namespace DatingApp.API.Models
         public DbSet<User> Users { get; set; }
 
         public DbSet<Photo> Photos { get; set;}
+        public DbSet<Like> Likes { get; set; }
+
+        // overriding how the db will set up the realtionship for the
+        // like table with fluent api
+        protected override void OnModelCreating(ModelBuilder builder){
+            builder.Entity<Like>()
+                .HasKey(k => new {k.LikerId, k.LikeeId});
+
+            builder.Entity<Like>()
+                .HasOne(u => u.Likee)
+                .WithMany(u => u.Likers)
+                .HasForeignKey( u => u.LikeeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Like>()
+                .HasOne(u => u.Liker)
+                .WithMany(u => u.Likees)
+                .HasForeignKey( u => u.LikerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+        }
     }
 }
